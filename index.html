@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Em Breve</title>
+<title>TS - Com</title>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
@@ -13,24 +13,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
+        background: linear-gradient(135deg, #0a0a0a, #1c1c1c, #121212);
         font-family: 'Montserrat', sans-serif;
+        color: #fff;
         overflow: hidden;
-        color: white;
+        position: relative;
     }
 
     h1 {
         font-size: 5rem;
         text-align: center;
-        position: relative;
         animation: glowPulse 2s infinite alternate;
-    }
-
-    h1::after {
-        content: '✨';
-        position: absolute;
-        right: -50px;
-        animation: sparkle 3s infinite;
+        margin: 0;
     }
 
     @keyframes glowPulse {
@@ -39,28 +33,93 @@
         100% { text-shadow: 0 0 10px #ff4c4c, 0 0 20px #ff4c4c, 0 0 30px #ff4c4c; transform: scale(1); }
     }
 
-    @keyframes sparkle {
-        0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
-        50% { opacity: 1; transform: translateY(-20px) scale(1); }
+    /* Footer discreto tipo barra */
+    .footer-bar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0,0,0,0.6);
+        color: #aaa;
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 5px 10px;
+        letter-spacing: 1px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: 'Montserrat', sans-serif;
     }
 
-    .credits {
-        position: absolute;
-        bottom: 20px;
-        font-size: 1rem;
-        color: #aaa;
-        text-align: center;
-        width: 100%;
-        letter-spacing: 1px;
+    .footer-bar span {
+        color: #fff;
+    }
+
+    /* Cookie banner */
+    #cookieBanner {
+        position: fixed;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(20,20,20,0.9);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 0 10px #000;
+    }
+
+    #cookieBanner button {
+        background: #ff4c4c;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        color: #fff;
+        font-weight: bold;
     }
 
 </style>
 </head>
 <body>
     <h1>Em Breve</h1>
-    <div class="credits">
-        Desenvolvido por TS Dev 🔥<br>
-        E um monte de porrinhas gostosas 🍕✨
+
+    <div class="footer-bar">
+        <div>All Rights Reserved © <span>TS - DEV</span></div>
+        <div>Última atualização: <span id="lastUpdate"></span></div>
     </div>
+
+    <div id="cookieBanner">
+        Esse site usa cookies para melhorar sua experiência.
+        <button id="acceptCookies">Aceitar</button>
+    </div>
+
+<script>
+    // Variável que mantém a última atualização enquanto o site roda
+    const lastUpdateTime = new Date();
+
+    function formatDate(d) {
+        const pad = n => n.toString().padStart(2,'0');
+        return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+    }
+
+    document.getElementById('lastUpdate').textContent = formatDate(lastUpdateTime);
+
+    // Cookies reais usando localStorage
+    const cookieBanner = document.getElementById('cookieBanner');
+    const acceptButton = document.getElementById('acceptCookies');
+
+    // Verifica se usuário já aceitou
+    if(localStorage.getItem('cookiesAccepted') === 'true'){
+        cookieBanner.style.display = 'none';
+    }
+
+    acceptButton.addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        cookieBanner.style.display = 'none';
+    });
+</script>
 </body>
 </html>
