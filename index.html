@@ -1,40 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Em Breve</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            font-family: Arial, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Em Breve</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
-        h1 {
-            color: white;
-            font-size: 4rem;
-            text-align: center;
-            animation: fadeZoom 2s ease-in-out infinite alternate;
-        }
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle at top, #0f0c29, #302b63, #24243e);
+        font-family: 'Montserrat', sans-serif;
+        overflow: hidden;
+        color: white;
+    }
 
-        @keyframes fadeZoom {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1.2);
-            }
-        }
-    </style>
+    h1 {
+        font-size: 5rem;
+        text-align: center;
+        position: relative;
+        animation: glowPulse 2s infinite alternate;
+    }
+
+    h1::after {
+        content: '✨';
+        position: absolute;
+        right: -50px;
+        animation: sparkle 3s infinite;
+    }
+
+    @keyframes glowPulse {
+        0% { text-shadow: 0 0 10px #ff4c4c, 0 0 20px #ff4c4c, 0 0 30px #ff4c4c; transform: scale(1); }
+        50% { text-shadow: 0 0 20px #ff6ec7, 0 0 40px #ff6ec7, 0 0 60px #ff6ec7; transform: scale(1.1); }
+        100% { text-shadow: 0 0 10px #ff4c4c, 0 0 20px #ff4c4c, 0 0 30px #ff4c4c; transform: scale(1); }
+    }
+
+    @keyframes sparkle {
+        0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
+        50% { opacity: 1; transform: translateY(-20px) scale(1); }
+    }
+
+    .credits {
+        position: absolute;
+        bottom: 20px;
+        font-size: 1rem;
+        color: #aaa;
+        text-align: center;
+        width: 100%;
+        letter-spacing: 1px;
+    }
+
+</style>
 </head>
 <body>
     <h1>Em Breve</h1>
+    <div class="credits">
+        Desenvolvido por TS Dev 🔥<br>
+        E um monte de porrinhas gostosas 🍕✨
+    </div>
 </body>
 </html>
